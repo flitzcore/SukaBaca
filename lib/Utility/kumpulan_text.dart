@@ -8,14 +8,14 @@ class LargeText extends StatelessWidget {
   LargeText ({Key? key,
     required this.text,
     this.color=Colors.black,
-    this.size=30
+    this.size=20
     }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: GoogleFonts.kanit(
+      style: GoogleFonts.poppins(
         textStyle:
           TextStyle(
             color: color,

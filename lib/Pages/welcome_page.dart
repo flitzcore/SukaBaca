@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:suka_baca/Utility/button_1.dart';
+import 'package:suka_baca/Utility/kumpulan_text.dart';
 import 'package:suka_baca/Utility/slider_rect.dart';
 
 
@@ -17,6 +18,11 @@ class _WelcomePagesState extends State<WelcomePages> {
     "welcomepage_2.png",
     "welcomepage_3.png"
   ];
+  List textBold=[
+    "Buku adalah Jendela Ilmu",
+    "Catat Setiap Hal Penting",
+    "Kemudahan Merangkum Buku Kesukaanmu"
+  ];
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +31,13 @@ class _WelcomePagesState extends State<WelcomePages> {
           itemCount: img.length,
           itemBuilder: (_,index){
             return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                Container(
+                  alignment: Alignment.topLeft,
+                  margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+                  child: LargeText(text: textBold[index]),
+                ),
                 Container(
                   width: double.maxFinite-10,
                   height: MediaQuery.of(context).size.width-10,
@@ -41,7 +51,10 @@ class _WelcomePagesState extends State<WelcomePages> {
                     ),
                   )
                 ),
-                SliderBar(pages: img.length,pagesIndex: index),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children:[SliderBar(pages: img.length,pagesIndex: index)]
+                ),
               ],
             );
           }),
