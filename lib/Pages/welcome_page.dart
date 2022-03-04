@@ -13,24 +13,48 @@ class WelcomePages extends StatefulWidget {
 class _WelcomePagesState extends State<WelcomePages> {
   @override
   List img=[
-    "welcomepage_1.jpg",
-    "welcomepage_2.jpg",
-    "welcomepage_3.jpg"
+    "welcomepage_1.png",
+    "welcomepage_2.png",
+    "welcomepage_3.png"
   ];
 
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView.builder(
-          scrollDirection: Axis.vertical,
+          scrollDirection: Axis.horizontal,
           itemCount: img.length,
           itemBuilder: (_,index){
-            return Container(
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: double.maxFinite-10,
+                  height: MediaQuery.of(context).size.width-10,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(
+                            "assets/img/"+img[index]
+                        ),
+                        fit: BoxFit.contain,
+                        filterQuality:FilterQuality.high
+                    ),
+                  )
+                ),
+                SliderBar(pages: img.length,pagesIndex: index),
+              ],
+            );
+          }),
+    );
+  }
+}
+/*return Container(
               width: double.maxFinite,
               height: double.maxFinite,
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage(
-                          "assets/image/"+img[index]
+                          "assets/img/"+img[index]
                       ),
                       fit: BoxFit.cover,
                       filterQuality:FilterQuality.high
@@ -40,8 +64,8 @@ class _WelcomePagesState extends State<WelcomePages> {
               child: Container(
                 width: 500,
                 margin: const EdgeInsets.only(top:100,right:20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children:[
                     if(index==2)Container(
                       child:Button1(text: "Lanjutkan"),
@@ -57,7 +81,4 @@ class _WelcomePagesState extends State<WelcomePages> {
                 ),
               ),
             );
-          }),
-    );
-  }
-}
+            */
