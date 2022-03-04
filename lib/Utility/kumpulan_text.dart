@@ -34,19 +34,18 @@ class BodyText extends StatelessWidget {
     Key? key,
     required this.text,
     this.color=Colors.black,
-    this.size=30}) : super(key: key);
+    this.size=15}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
         text,
-        textAlign: TextAlign.center,
-        style: GoogleFonts.kanit(
+        style: GoogleFonts.poppins(
             textStyle:
             TextStyle(
                 color: color,
                 fontSize: size,
-                fontWeight: FontWeight.normal,
+                fontWeight: FontWeight.w100,
             )
         ),
 

@@ -23,7 +23,11 @@ class _WelcomePagesState extends State<WelcomePages> {
     "Catat Setiap Hal Penting",
     "Kemudahan Merangkum Buku Kesukaanmu"
   ];
-
+  List textBody=[
+    "Luangkan waktumu untu membaca buku setiap hari",
+    "Simpan setiap progress dan hal penting dari buku yang telah dibaca",
+    "Stop membuang waktu membaca buku kesukaanmu berulang kali"
+  ];
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView.builder(
@@ -35,8 +39,14 @@ class _WelcomePagesState extends State<WelcomePages> {
               children: [
                 Container(
                   alignment: Alignment.topLeft,
-                  margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-                  child: LargeText(text: textBold[index]),
+                  margin: const EdgeInsets.only(left: 20.0),
+                  child: Column(
+
+                    children: [
+                      LargeText(text: textBold[index]),
+                      BodyText(text: textBody[index]),
+                    ],
+                  ),
                 ),
                 Container(
                   width: double.maxFinite-10,
@@ -46,7 +56,7 @@ class _WelcomePagesState extends State<WelcomePages> {
                         image: AssetImage(
                             "assets/img/"+img[index]
                         ),
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                         filterQuality:FilterQuality.high
                     ),
                   )
