@@ -11,10 +11,12 @@ class TambahRangkumanPage extends StatefulWidget {
 class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(
-        "Tambah Rangkuman Page",
-        style: semiBlackBoldTextStyle,
+    return Scaffold(
+      body: Container(
+        child: Text(
+          "Tambah Rangkuman Page",
+          style: semiBlackBoldTextStyle,
+        ),
       ),
     );
   }

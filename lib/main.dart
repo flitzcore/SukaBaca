@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:suka_baca/Pages/home_page.dart';
+import 'package:suka_baca/Pages/route_page.dart';
 import 'package:suka_baca/Pages/welcome_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: HomePage(), //Bisa dikembalikan sesuai kebutuhan development
     );
   }
 }
