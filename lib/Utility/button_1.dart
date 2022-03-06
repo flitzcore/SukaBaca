@@ -15,21 +15,12 @@ class Button1 extends StatelessWidget {
       width: width,
       height: 40,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.transparent,
-        border: Border.all(
-          color: Colors.blueAccent,
-          width: 2
-        )
+        borderRadius: BorderRadius.circular(50),
+        color: Colors.black,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children:[
-          Container(
-            child: BodyText(text: this.text,size: 20,color:Colors.blueAccent),
-            alignment: Alignment.center,
-          )
-        ],
+      child: TextButton(
+        onPressed:(){},
+        child: LargeText(text: this.text,size: 20,color:Colors.white),
       ),
     );
   }

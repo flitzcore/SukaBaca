@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(), //Bisa dikembalikan sesuai kebutuhan development
+      home: WelcomePages(), //Bisa dikembalikan sesuai kebutuhan development
     );
   }
 }

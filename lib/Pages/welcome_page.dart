@@ -24,9 +24,9 @@ class _WelcomePagesState extends State<WelcomePages> {
     "Kemudahan Merangkum Buku Kesukaanmu"
   ];
   List textBody=[
-    "Luangkan waktumu untu membaca buku setiap hari",
+    "Luangkan waktumu untuk membaca buku setiap hari",
     "Simpan setiap progress dan hal penting dari buku yang telah dibaca",
-    "Stop membuang waktu membaca buku kesukaanmu berulang kali"
+    "Berhenti membuang waktu membaca buku kesukaanmu berulang kali"
   ];
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,9 +39,9 @@ class _WelcomePagesState extends State<WelcomePages> {
               children: [
                 Container(
                   alignment: Alignment.topLeft,
-                  margin: const EdgeInsets.only(left: 20.0),
+                  margin: const EdgeInsets.only(left: 20.0, right: 20,top: 30),
                   child: Column(
-
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       LargeText(text: textBold[index]),
                       BodyText(text: textBody[index]),
@@ -65,43 +65,15 @@ class _WelcomePagesState extends State<WelcomePages> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children:[SliderBar(pages: img.length,pagesIndex: index)]
                 ),
+                Container(
+                  height: 50,
+                  width: double.maxFinite-30,
+                  margin: const EdgeInsets.only(left: 50, right: 50),
+                  child: (index==2)?Button1(text: "Jelajahi Sekarang"):(Container())
+                ),
               ],
             );
           }),
     );
   }
 }
-/*return Container(
-              width: double.maxFinite,
-              height: double.maxFinite,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(
-                          "assets/img/"+img[index]
-                      ),
-                      fit: BoxFit.cover,
-                      filterQuality:FilterQuality.high
-                  ),
-              ),
-
-              child: Container(
-                width: 500,
-                margin: const EdgeInsets.only(top:100,right:20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children:[
-                    if(index==2)Container(
-                      child:Button1(text: "Lanjutkan"),
-                      alignment: Alignment.bottomRight,
-                      margin: EdgeInsets.only(right: 20,bottom: 20),
-                    ),
-                    Column(
-                      children: [
-                        SliderBar(pages: img.length,pagesIndex: index),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            );
-            */

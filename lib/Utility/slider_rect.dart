@@ -13,7 +13,7 @@ class SliderBar extends StatelessWidget {
           Container(
           margin: const EdgeInsets.only(bottom: 2),
           height: 8,
-          width: (index==pagesIndex)?25:8,
+          width: (index==pagesIndex)?16:8,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               color: Colors.black.withAlpha((index==pagesIndex)?255:90),
