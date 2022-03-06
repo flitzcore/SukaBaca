@@ -10,4 +10,4 @@ Desain UI di figma https://www.figma.com/file/wLqaVVhliIySdrCDeSlZCy/SukaBaca?no
 Mencoba membuat Welcome Page (Farid)  
 Mencoba membuat Home Page (Krisna)  
 6 Maret 2022:  
-Menyelesaikan welcome page
+Menyelesaikan welcome page (Farid)
