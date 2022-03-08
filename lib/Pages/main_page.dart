@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../Utility/theme.dart';
 
 class MainPage extends StatefulWidget {
@@ -13,35 +12,59 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 8,
-            vertical: 0,
-          ),
-          child: Text(
-            "SukaBaca",
-            style: semiWhiteBoldTextStyle.copyWith(fontSize: 24),
-          ),
-        ),
-        backgroundColor: Color(0xff000000),
-        elevation: 0,
-      ),
-      body: ListView(
-        children: [
-          SizedBox(
-            height: 30,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 0),
-            child: Text(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: ListView(
+          children: [
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              "SukaBaca",
+              style: semiBlackBoldTextStyle.copyWith(
+                fontSize: 24,
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            TextField(
+              style: TextStyle(
+                color: greyColor,
+              ),
+              decoration: InputDecoration(
+                fillColor: greyColor,
+                focusColor: greyColor,
+                suffixIcon: Icon(Icons.search),
+                suffixIconColor: greyColor,
+                hintText: "Search",
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                    width: 2,
+                    color: blackColor,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                    width: 2,
+                    color: blackColor,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Text(
               "Rangkumanmu",
               style: semiBlackBoldTextStyle.copyWith(
                 fontSize: 16,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:suka_baca/Pages/route_page.dart';
 
 import 'kumpulan_text.dart';
-
 
 class Button1 extends StatelessWidget {
   final String text;
   double? width;
-  Button1({Key? key, this.width=150,required this.text}) : super(key: key);
+  Button1({Key? key, this.width = 150, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,15 @@ class Button1 extends StatelessWidget {
         color: Colors.black,
       ),
       child: TextButton(
-        onPressed:(){},
-        child: LargeText(text: this.text,size: 20,color:Colors.white),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => RoutePage(),
+            ),
+          );
+        },
+        child: LargeText(text: this.text, size: 20, color: Colors.white),
       ),
     );
   }

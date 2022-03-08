@@ -6,14 +6,14 @@ import 'package:suka_baca/Pages/tambahrangkuman_page.dart';
 import 'package:suka_baca/Utility/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class RoutePage extends StatefulWidget {
+  const RoutePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<RoutePage> createState() => _RoutePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _RoutePageState extends State<RoutePage> {
   int selectedIndex = 0;
 
   @override
@@ -34,6 +34,13 @@ class _HomePageState extends State<HomePage> {
             children: screens,
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.add),
+          elevation: 0,
+          backgroundColor: blackColor,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: blackColor,
           unselectedItemColor: whiteColor,
