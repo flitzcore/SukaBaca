@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:suka_baca/Utility/theme.dart';
 
+import '../Widget/rangkuman_card.dart';
+
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
 
@@ -15,6 +17,7 @@ class _FavoritePageState extends State<FavoritePage> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24),
         child: ListView(
+          physics: BouncingScrollPhysics(),
           children: [
             SizedBox(
               height: 30,
@@ -33,6 +36,25 @@ class _FavoritePageState extends State<FavoritePage> {
               style: semiBlackBoldTextStyle.copyWith(
                 fontSize: 16,
               ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            RangkumanCard(),
+            SizedBox(
+              height: 30,
+            ),
+            RangkumanCard(),
+            SizedBox(
+              height: 30,
+            ),
+            RangkumanCard(),
+            SizedBox(
+              height: 30,
+            ),
+            RangkumanCard(),
+            SizedBox(
+              height: 30,
             ),
           ],
         ),

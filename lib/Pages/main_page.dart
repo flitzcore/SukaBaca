@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:suka_baca/Widget/genre_widget.dart';
+import 'package:suka_baca/Widget/progress_widget.dart';
+import 'package:suka_baca/Widget/rangkuman_card.dart';
 import '../Utility/theme.dart';
 
 class MainPage extends StatefulWidget {
@@ -12,9 +15,11 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: ListView(
+          physics: BouncingScrollPhysics(),
           children: [
             SizedBox(
               height: 30,
@@ -62,6 +67,25 @@ class _MainPageState extends State<MainPage> {
               style: semiBlackBoldTextStyle.copyWith(
                 fontSize: 16,
               ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            RangkumanCard(),
+            SizedBox(
+              height: 30,
+            ),
+            RangkumanCard(),
+            SizedBox(
+              height: 30,
+            ),
+            RangkumanCard(),
+            SizedBox(
+              height: 30,
+            ),
+            RangkumanCard(),
+            SizedBox(
+              height: 30,
             ),
           ],
         ),

@@ -40,7 +40,7 @@ class _RoutePageState extends State<RoutePage> {
           elevation: 0,
           backgroundColor: blackColor,
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+        floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: blackColor,
           unselectedItemColor: whiteColor,
