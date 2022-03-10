@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suka_baca/Pages/route_page.dart';
 import 'package:suka_baca/Utility/button_1.dart';
 import 'package:suka_baca/Utility/kumpulan_text.dart';
 import 'package:suka_baca/Utility/slider_rect.dart';
@@ -69,7 +70,15 @@ class _WelcomePagesState extends State<WelcomePages> {
                   height: 50,
                   width: double.maxFinite-30,
                   margin: const EdgeInsets.only(left: 50, right: 50),
-                  child: (index==2)?Button1(text: "Jelajahi Sekarang"):(Container())
+                  child: (index==2)?Button1(
+                    text: "Jelajahi Sekarang",
+                    onButtonPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const RoutePage()),
+                      );
+                    },
+                  ):(Container())
                 ),
               ],
             );
