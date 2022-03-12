@@ -12,11 +12,24 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Text(
-          "Tambah Rangkuman Page",
-          style: semiBlackBoldTextStyle,
-        ),
+      body: SafeArea(
+        child: ListView(physics: BouncingScrollPhysics(), children: [
+          SizedBox(
+            height: 30,
+          ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.arrow_back,
+                  size: 20,
+                ),
+              ),
+              Spacer(),
+            ],
+          )
+        ]),
       ),
     );
   }

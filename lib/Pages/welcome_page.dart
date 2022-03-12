@@ -46,26 +46,27 @@ class _WelcomePagesState extends State<WelcomePages> {
                   ),
                 ),
                 Container(
-                    width: double.maxFinite - 10,
-                    height: MediaQuery.of(context).size.width - 10,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/img/" + img[index]),
-                          fit: BoxFit.cover,
-                          filterQuality: FilterQuality.high),
-                    )),
+                  width: double.maxFinite - 10,
+                  height: MediaQuery.of(context).size.width - 10,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/img/" + img[index]),
+                        fit: BoxFit.cover,
+                        filterQuality: FilterQuality.high),
+                  ),
+                ),
                 Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SliderBar(pages: img.length, pagesIndex: index)
-                    ]),
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [SliderBar(pages: img.length, pagesIndex: index)],
+                ),
                 Container(
-                    height: 50,
-                    width: double.maxFinite - 30,
-                    margin: const EdgeInsets.only(left: 50, right: 50),
-                    child: (index == 2)
-                        ? Button1(text: "Jelajahi Sekarang")
-                        : (Container())),
+                  height: 50,
+                  width: double.maxFinite - 30,
+                  margin: const EdgeInsets.only(left: 50, right: 50),
+                  child: (index == 2)
+                      ? Button1(text: "Jelajahi Sekarang")
+                      : (Container()),
+                ),
               ],
             );
           }),

@@ -4,7 +4,9 @@ import 'package:suka_baca/Widget/genre_widget.dart';
 import 'package:suka_baca/Widget/progress_widget.dart';
 
 class RangkumanCard extends StatefulWidget {
-  const RangkumanCard({Key? key}) : super(key: key);
+  final bool isFavorite;
+
+  RangkumanCard({Key? key, this.isFavorite = false}) : super(key: key);
 
   @override
   State<RangkumanCard> createState() => _RangkumanCardState();
@@ -58,14 +60,14 @@ class _RangkumanCardState extends State<RangkumanCard> {
               children: [
                 Icon(
                   Icons.favorite,
-                  color: whiteColor,
+                  color: widget.isFavorite ? redColor : whiteColor,
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 IconButton(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
+                  // splashColor: Colors.transparent,
+                  // highlightColor: Colors.transparent,
                   onPressed: () {},
                   icon: Icon(
                     Icons.arrow_forward,
