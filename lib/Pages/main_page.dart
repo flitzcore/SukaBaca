@@ -23,7 +23,7 @@ class _MainPageState extends State<MainPage> {
     for(int i=0;i<rangkuman.length;i++){
       await RangkumanDatabase.instance.delete(i);
     }
-    final r1= Rangkuman(onProgress: true, nama_pengarang: "Farid", favorit: true, deskripsi: "dksd", judul: "Buku ini");
+    final r1= Rangkuman(onProgress: true, nama_pengarang: "Orang lain", favorit: false, deskripsi: "dksd", judul: "Buku ini");
     final r2= Rangkuman(onProgress: true, nama_pengarang: "Farid", favorit: true, deskripsi: "dksd", judul: "Buku 3 ini");
     await RangkumanDatabase.instance.create(r1);
     await RangkumanDatabase.instance.create(r2);

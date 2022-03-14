@@ -18,79 +18,84 @@ class RangkumanCard extends StatefulWidget {
 class _RangkumanCardState extends State<RangkumanCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: whiteColor,
-        border: Border.all(width: 2),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: EdgeInsets.only(
-          top: 16,
-          bottom: 16,
-          left: 10,
-          right: 1,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Container(
+        decoration: BoxDecoration(
+          color: whiteColor,
+          border: Border.all(width: 2),
+          borderRadius: BorderRadius.circular(12),
         ),
-        child: Row(
-          children: [
-            Container(
-              width: 61,
-              height: 93,
-              color: blackColor,
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.judul,
-                  style: semiBlackBoldTextStyle,
-                ),
-                Text(
-                  "by ${widget.nama_pengarang}",
-                  style: lightTextStyle,
-                ),
-                Row(
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 16,
+            bottom: 16,
+            left: 10,
+            right: 1,
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 61,
+                height: 93,
+                color: blackColor,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.judul,
+                    style: semiBlackBoldTextStyle,
+                  ),
+                  Text(
+                    "by ${widget.nama_pengarang}",
+                    style: lightTextStyle,
+                  ),
+                  Row(
+                    children: [
+                      romansa,
+                      SizedBox(
+                        width: 5,
+                      ),
+                      horror,
+                      SizedBox(
+                        width: 5,
+                      ),
+                      thriller,
+                    ],
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  on_progress,
+                ],
+              ),
+              Expanded(
+                child: Column(
                   children: [
-                    romansa,
-                    SizedBox(
-                      width: 5,
+                    Icon(
+                      Icons.favorite,
+                      color: widget.isFavorite ? redColor : whiteColor,
                     ),
-                    horror,
                     SizedBox(
-                      width: 5,
+                      height: 20,
                     ),
-                    thriller,
+                    IconButton(
+                      // splashColor: Colors.transparent,
+                      // highlightColor: Colors.transparent,
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.arrow_forward,
+                      ),
+                    ),
                   ],
                 ),
-                SizedBox(
-                  height: 5,
-                ),
-                on_progress,
-              ],
-            ),
-            Column(
-              children: [
-                Icon(
-                  Icons.favorite,
-                  color: widget.isFavorite ? redColor : whiteColor,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                IconButton(
-                  // splashColor: Colors.transparent,
-                  // highlightColor: Colors.transparent,
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.arrow_forward,
-                  ),
-                ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );
