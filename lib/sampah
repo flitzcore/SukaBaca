@@ -1,0 +1,36 @@
+//Search box
+
+//   onTap: (() => Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => SearchPage(),
+            //         ),
+            //       )),
+            //   style: TextStyle(
+            //     color: greyColor,
+            //   ),
+            //   decoration: InputDecoration(
+            //     fillColor: greyColor,
+            //     focusColor: greyColor,
+            //     suffixIcon: Icon(Icons.search),
+            //     suffixIconColor: greyColor,
+            //     hintText: "Search",
+            //     enabledBorder: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(12),
+            //       borderSide: BorderSide(
+            //         width: 2,
+            //         color: blackColor,
+            //       ),
+            //     ),
+            //     focusedBorder: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(12),
+            //       borderSide: BorderSide(
+            //         width: 2,
+            //         color: blackColor,
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 30,
+            // ),

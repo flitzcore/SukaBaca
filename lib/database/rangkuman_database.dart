@@ -16,7 +16,7 @@ class RangkumanDatabase{
   Future<Database> _initDB(String filePath)async{
     final dbPath= await getDatabasesPath();
     final path= join(dbPath,filePath);
-
+    print("db location: ${path}");
     return await openDatabase(path,version: 1,onCreate: _createDB);
   }
   Future _createDB(Database db, int version)async {
@@ -28,7 +28,9 @@ class RangkumanDatabase{
     CREATE TABLE $tableRangkuman (
       ${RangkumanFields.id} $idType,
       ${RangkumanFields.favorit} $boolType,
+      ${RangkumanFields.on_progress} $boolType,
       ${RangkumanFields.judul} $textType, 
+      ${RangkumanFields.nama_pengarang} $textType, 
       ${RangkumanFields.deskripsi} $textType
     )
     ''');

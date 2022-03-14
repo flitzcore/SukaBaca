@@ -4,9 +4,12 @@ import 'package:suka_baca/Widget/genre_widget.dart';
 import 'package:suka_baca/Widget/progress_widget.dart';
 
 class RangkumanCard extends StatefulWidget {
+  final String judul;
+  final String nama_pengarang;
+  final bool onProgress;
   final bool isFavorite;
 
-  RangkumanCard({Key? key, this.isFavorite = false}) : super(key: key);
+  RangkumanCard({Key? key,required this.isFavorite, required this.nama_pengarang, required this.judul,required this.onProgress}) : super(key: key);
 
   @override
   State<RangkumanCard> createState() => _RangkumanCardState();
@@ -42,11 +45,11 @@ class _RangkumanCardState extends State<RangkumanCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Guy Kawasaki",
+                  widget.judul,
                   style: semiBlackBoldTextStyle,
                 ),
                 Text(
-                  "by Alexander Nato",
+                  "by ${widget.nama_pengarang}",
                   style: lightTextStyle,
                 ),
                 Row(
