@@ -49,11 +49,23 @@ class _RangkumanCardState extends State<RangkumanCard> {
                   "by Alexander Nato",
                   style: lightTextStyle,
                 ),
-                GenreWidget(),
+                Row(
+                  children: [
+                    romansa,
+                    SizedBox(
+                      width: 5,
+                    ),
+                    horror,
+                    SizedBox(
+                      width: 5,
+                    ),
+                    thriller,
+                  ],
+                ),
                 SizedBox(
                   height: 5,
                 ),
-                ProgressWidget(),
+                on_progress,
               ],
             ),
             Column(

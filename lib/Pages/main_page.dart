@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suka_baca/Pages/search_page.dart';
 import 'package:suka_baca/Widget/genre_widget.dart';
 import 'package:suka_baca/Widget/progress_widget.dart';
 import 'package:suka_baca/Widget/rangkuman_card.dart';
@@ -33,35 +34,41 @@ class _MainPageState extends State<MainPage> {
             SizedBox(
               height: 30,
             ),
-            TextField(
-              style: TextStyle(
-                color: greyColor,
-              ),
-              decoration: InputDecoration(
-                fillColor: greyColor,
-                focusColor: greyColor,
-                suffixIcon: Icon(Icons.search),
-                suffixIconColor: greyColor,
-                hintText: "Search",
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    width: 2,
-                    color: blackColor,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    width: 2,
-                    color: blackColor,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
+            // TextField(
+            //   onTap: (() => Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => SearchPage(),
+            //         ),
+            //       )),
+            //   style: TextStyle(
+            //     color: greyColor,
+            //   ),
+            //   decoration: InputDecoration(
+            //     fillColor: greyColor,
+            //     focusColor: greyColor,
+            //     suffixIcon: Icon(Icons.search),
+            //     suffixIconColor: greyColor,
+            //     hintText: "Search",
+            //     enabledBorder: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(12),
+            //       borderSide: BorderSide(
+            //         width: 2,
+            //         color: blackColor,
+            //       ),
+            //     ),
+            //     focusedBorder: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(12),
+            //       borderSide: BorderSide(
+            //         width: 2,
+            //         color: blackColor,
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 30,
+            // ),
             Text(
               "Rangkumanmu",
               style: semiBlackBoldTextStyle.copyWith(

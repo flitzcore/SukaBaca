@@ -33,7 +33,12 @@ class _RoutePageState extends State<RoutePage> {
         ),
         backgroundColor: whiteColor,
         floatingActionButton: FloatingActionButton(
-          onPressed: () => TambahRangkumanPage(),
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => TambahRangkumanPage(),
+            ),
+          ),
           child: Icon(Icons.add),
           elevation: 0,
           backgroundColor: blackColor,
