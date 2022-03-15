@@ -16,34 +16,45 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   late List<Rangkuman> rangkuman;
-  bool isLoading =false;
-  bool add=false;
+  bool isLoading = false;
+  bool add = false;
 
-  Future addData()async{
-    for(int i=0;i<rangkuman.length;i++){
+  Future addData() async {
+    for (int i = 0; i < rangkuman.length; i++) {
       await RangkumanDatabase.instance.delete(i);
     }
-    final r1= Rangkuman(onProgress: true, nama_pengarang: "Orang lain", favorit: false, deskripsi: "dksd", judul: "Buku ini");
-    final r2= Rangkuman(onProgress: true, nama_pengarang: "Farid", favorit: true, deskripsi: "dksd", judul: "Buku 3 ini");
+    final r1 = Rangkuman(
+        onProgress: true,
+        nama_pengarang: "Orang lain",
+        favorit: false,
+        deskripsi: "dksd",
+        judul: "Buku ini");
+    final r2 = Rangkuman(
+        onProgress: true,
+        nama_pengarang: "Farid",
+        favorit: true,
+        deskripsi: "dksd",
+        judul: "Buku 3 ini");
     await RangkumanDatabase.instance.create(r1);
     await RangkumanDatabase.instance.create(r2);
-    add=true;
+    add = true;
     refreshList();
-
   }
-  void initState(){
+
+  void initState() {
     super.initState();
     refreshList();
   }
-  Future refreshList()async{
-    setState(()=>isLoading = true);
-    this.rangkuman=await RangkumanDatabase.instance.readAll();
-    setState(()=>isLoading = false);
-  }
-  @override
 
+  Future refreshList() async {
+    setState(() => isLoading = true);
+    this.rangkuman = await RangkumanDatabase.instance.readAll();
+    setState(() => isLoading = false);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if(add==false)addData();
+    if (add == false) addData();
 
     return Scaffold(
       backgroundColor: whiteColor,
@@ -76,15 +87,25 @@ class _MainPageState extends State<MainPage> {
             SizedBox(
               height: 10,
             ),
-            Expanded(child:
-            ListView.builder(itemCount: rangkuman.length,itemBuilder: (context, index) {
-
-              return RangkumanCard(
-                  isFavorite: rangkuman[index].favorit,
-                  nama_pengarang: rangkuman[index].nama_pengarang,
-                  judul: rangkuman[index].judul,
-                  onProgress: rangkuman[index].onProgress);
-            })
+            Expanded(
+              child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  itemCount: rangkuman.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        RangkumanCard(
+                          isFavorite: rangkuman[index].favorit,
+                          nama_pengarang: rangkuman[index].nama_pengarang,
+                          judul: rangkuman[index].judul,
+                          onProgress: rangkuman[index].onProgress,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    );
+                  }),
             )
           ],
         ),

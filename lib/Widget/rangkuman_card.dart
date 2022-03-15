@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suka_baca/Pages/rangkuman_page.dart';
 import 'package:suka_baca/Utility/theme.dart';
 import 'package:suka_baca/Widget/genre_widget.dart';
 import 'package:suka_baca/Widget/progress_widget.dart';
@@ -9,7 +10,13 @@ class RangkumanCard extends StatefulWidget {
   final bool onProgress;
   final bool isFavorite;
 
-  RangkumanCard({Key? key,required this.isFavorite, required this.nama_pengarang, required this.judul,required this.onProgress}) : super(key: key);
+  RangkumanCard(
+      {Key? key,
+      required this.isFavorite,
+      required this.nama_pengarang,
+      required this.judul,
+      required this.onProgress})
+      : super(key: key);
 
   @override
   State<RangkumanCard> createState() => _RangkumanCardState();
@@ -86,7 +93,14 @@ class _RangkumanCardState extends State<RangkumanCard> {
                     IconButton(
                       // splashColor: Colors.transparent,
                       // highlightColor: Colors.transparent,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RangkumanPage(),
+                          ),
+                        );
+                      },
                       icon: Icon(
                         Icons.arrow_forward,
                       ),
