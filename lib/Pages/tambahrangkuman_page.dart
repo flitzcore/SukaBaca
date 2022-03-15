@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:suka_baca/Utility/theme.dart';
 import 'package:suka_baca/Widget/genre_widget.dart';
 import 'package:suka_baca/Widget/progress_widget.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 class TambahRangkumanPage extends StatefulWidget {
   const TambahRangkumanPage({Key? key}) : super(key: key);
@@ -29,6 +30,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
 
   Container? valueGenre;
   Container? valueProgress;
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +57,15 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                   ),
                   Spacer(),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                    },
                     icon: Icon(
-                      Icons.favorite_border,
+                      Icons.favorite,
                       size: 25,
+                      color: isFavorite ? redColor : greyColor,
                     ),
                   ),
                 ],
