@@ -40,6 +40,7 @@ class _FavoritePageState extends State<FavoritePage> {
             SizedBox(
               height: 10,
             ),
+            /*
             RangkumanCard(
               isFavorite: true,
             ),
@@ -63,7 +64,7 @@ class _FavoritePageState extends State<FavoritePage> {
             ),
             SizedBox(
               height: 30,
-            ),
+            ),*/
           ],
         ),
       ),
