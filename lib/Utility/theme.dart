@@ -18,7 +18,10 @@ TextStyle semiWhiteBoldTextStyle =
     GoogleFonts.poppins(color: whiteColor, fontWeight: FontWeight.w600);
 TextStyle lightTextStyle =
     GoogleFonts.poppins(color: greyColor, fontWeight: FontWeight.w300);
+
 TextStyle mediumWhiteTextSTyle =
     GoogleFonts.poppins(color: whiteColor, fontWeight: FontWeight.w500);
 TextStyle mediumBlackTextSTyle =
     GoogleFonts.poppins(color: blackColor, fontWeight: FontWeight.w500);
+TextStyle regularBlackTextSTyle =
+    GoogleFonts.poppins(color: blackColor, fontWeight: FontWeight.w300);

@@ -27,8 +27,6 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
     selesai,
   ];
 
-  List<String> selected = [];
-
   Container? valueGenre;
   Container? valueProgress;
   bool isFavorite = false;
@@ -203,7 +201,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
