@@ -19,23 +19,21 @@ class RangkumanCard extends StatefulWidget {
   final bool thriller;
   final bool misteri;
 
-
   RangkumanCard(
       {Key? key,
-        required this.isFavorite,
-        required this.nama_pengarang,
-        required this.judul,
-        required this.onProgress,
-        //genre
-        required this.horror,
-        required this.petualangan,
-        required this.pengenalan_diri,
-        required this.komedi,
-        required this.romansa,
-        required this.fiksi,
-        required this.thriller,
-        required this.misteri
-      })
+      required this.isFavorite,
+      required this.nama_pengarang,
+      required this.judul,
+      required this.onProgress,
+      //genre
+      required this.horror,
+      required this.petualangan,
+      required this.pengenalan_diri,
+      required this.komedi,
+      required this.romansa,
+      required this.fiksi,
+      required this.thriller,
+      required this.misteri})
       : super(key: key);
 
   @override
@@ -43,16 +41,16 @@ class RangkumanCard extends StatefulWidget {
 }
 
 class _RangkumanCardState extends State<RangkumanCard> {
-  List<Widget> genre=[SizedBox()];
-  void fillGenre(){
-    if(widget.horror)genre.add(horror);
-    if(widget.petualangan)genre.add(petualangan);
-    if(widget.pengenalan_diri)genre.add(pengenalanDiri);
-    if(widget.komedi)genre.add(komedi);
-    if(widget.romansa)genre.add(romansa);
-    if(widget.fiksi)genre.add(fiksi);
-    if(widget.thriller)genre.add(thriller);
-    if(widget.misteri)genre.add(misteri);
+  List<Widget> genre = [SizedBox()];
+  void fillGenre() {
+    if (widget.horror) genre.add(horror);
+    if (widget.petualangan) genre.add(petualangan);
+    if (widget.pengenalan_diri) genre.add(pengenalanDiri);
+    if (widget.komedi) genre.add(komedi);
+    if (widget.romansa) genre.add(romansa);
+    if (widget.fiksi) genre.add(fiksi);
+    if (widget.thriller) genre.add(thriller);
+    if (widget.misteri) genre.add(misteri);
   }
 
   @override
@@ -94,15 +92,14 @@ class _RangkumanCardState extends State<RangkumanCard> {
                     "by ${widget.nama_pengarang}",
                     style: lightTextStyle,
                   ),
-                  Row(
-                    children: genre
-                  ),
+                  Row(children: genre),
                   SizedBox(
                     height: 5,
                   ),
                   on_progress,
                 ],
               ),
+              Spacer(),
               Expanded(
                 child: Column(
                   children: [

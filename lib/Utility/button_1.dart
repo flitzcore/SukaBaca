@@ -1,14 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:suka_baca/Utility/theme.dart';
 
 import 'kumpulan_text.dart';
-
 
 class Button1 extends StatelessWidget {
   final String text;
   final VoidCallback onButtonPressed;
   double? width;
-  Button1({Key? key, this.width=150,required this.text, required this.onButtonPressed}) : super(key: key);
+  Button1(
+      {Key? key,
+      this.width = 150,
+      required this.text,
+      required this.onButtonPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +25,15 @@ class Button1 extends StatelessWidget {
         color: Colors.black,
       ),
       child: TextButton(
-        onPressed:(){onButtonPressed();},
-        child: LargeText(text: this.text,size: 20,color:Colors.white),
+        onPressed: () {
+          onButtonPressed();
+        },
+        child: Text(
+          "Continue",
+          style: semiWhiteBoldTextStyle.copyWith(
+            fontSize: 24,
+          ),
+        ),
       ),
     );
   }
