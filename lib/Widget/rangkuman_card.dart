@@ -9,13 +9,33 @@ class RangkumanCard extends StatefulWidget {
   final String nama_pengarang;
   final bool onProgress;
   final bool isFavorite;
+//genre
+  final bool horror;
+  final bool petualangan;
+  final bool pengenalan_diri;
+  final bool komedi;
+  final bool romansa;
+  final bool fiksi;
+  final bool thriller;
+  final bool misteri;
+
 
   RangkumanCard(
       {Key? key,
-      required this.isFavorite,
-      required this.nama_pengarang,
-      required this.judul,
-      required this.onProgress})
+        required this.isFavorite,
+        required this.nama_pengarang,
+        required this.judul,
+        required this.onProgress,
+        //genre
+        required this.horror,
+        required this.petualangan,
+        required this.pengenalan_diri,
+        required this.komedi,
+        required this.romansa,
+        required this.fiksi,
+        required this.thriller,
+        required this.misteri
+      })
       : super(key: key);
 
   @override
@@ -23,8 +43,21 @@ class RangkumanCard extends StatefulWidget {
 }
 
 class _RangkumanCardState extends State<RangkumanCard> {
+  List<Widget> genre=[SizedBox()];
+  void fillGenre(){
+    if(widget.horror)genre.add(horror);
+    if(widget.petualangan)genre.add(petualangan);
+    if(widget.pengenalan_diri)genre.add(pengenalanDiri);
+    if(widget.komedi)genre.add(komedi);
+    if(widget.romansa)genre.add(romansa);
+    if(widget.fiksi)genre.add(fiksi);
+    if(widget.thriller)genre.add(thriller);
+    if(widget.misteri)genre.add(misteri);
+  }
+
   @override
   Widget build(BuildContext context) {
+    fillGenre();
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Container(
@@ -62,17 +95,7 @@ class _RangkumanCardState extends State<RangkumanCard> {
                     style: lightTextStyle,
                   ),
                   Row(
-                    children: [
-                      romansa,
-                      SizedBox(
-                        width: 5,
-                      ),
-                      horror,
-                      SizedBox(
-                        width: 5,
-                      ),
-                      thriller,
-                    ],
+                    children: genre
                   ),
                   SizedBox(
                     height: 5,

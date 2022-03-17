@@ -16,6 +16,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   late List<Rangkuman> rangkuman;
+
   bool isLoading = false;
   bool add = false;
 
@@ -28,15 +29,31 @@ class _MainPageState extends State<MainPage> {
         nama_pengarang: "Orang lain",
         favorit: false,
         deskripsi: "dksd",
-        judul: "Buku ini");
+        judul: "Buku ini",
+        horror: true,
+        misteri: true
+    );
     final r2 = Rangkuman(
         onProgress: true,
         nama_pengarang: "Farid",
         favorit: true,
         deskripsi: "dksd",
-        judul: "Buku 3 ini");
+        judul: "Buku 3 ini",
+        romansa: true
+    );
+    final r3 = Rangkuman(
+        onProgress: true,
+        nama_pengarang: "Fariddsf",
+        favorit: true,
+        deskripsi: "dksd",
+        judul: "Buku 3 ini",
+        romansa: true,
+      pengenalan_diri: true,
+      horror: true,
+    );
     await RangkumanDatabase.instance.create(r1);
     await RangkumanDatabase.instance.create(r2);
+    await RangkumanDatabase.instance.create(r3);
     add = true;
     refreshList();
   }
@@ -50,11 +67,11 @@ class _MainPageState extends State<MainPage> {
     setState(() => isLoading = true);
     this.rangkuman = await RangkumanDatabase.instance.readAll();
     setState(() => isLoading = false);
-  }
 
+  }
   @override
   Widget build(BuildContext context) {
-    if (add == false) addData();
+  if (add == false) addData();
 
     return Scaffold(
       backgroundColor: whiteColor,
@@ -99,6 +116,14 @@ class _MainPageState extends State<MainPage> {
                           nama_pengarang: rangkuman[index].nama_pengarang,
                           judul: rangkuman[index].judul,
                           onProgress: rangkuman[index].onProgress,
+                          horror: rangkuman[index].horror,
+                          petualangan: rangkuman[index].petualangan,
+                          pengenalan_diri: rangkuman[index].pengenalan_diri,
+                          komedi: rangkuman[index].komedi,
+                          romansa: rangkuman[index].romansa,
+                          fiksi: rangkuman[index].fiksi,
+                          thriller: rangkuman[index].thriller,
+                          misteri: rangkuman[index].misteri,
                         ),
                         SizedBox(
                           height: 20,

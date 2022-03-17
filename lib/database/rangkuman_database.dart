@@ -31,7 +31,15 @@ class RangkumanDatabase{
       ${RangkumanFields.on_progress} $boolType,
       ${RangkumanFields.judul} $textType, 
       ${RangkumanFields.nama_pengarang} $textType, 
-      ${RangkumanFields.deskripsi} $textType
+      ${RangkumanFields.deskripsi} $textType,
+      ${RangkumanFields.horror} $boolType,
+      ${RangkumanFields.petualangan} $boolType,
+      ${RangkumanFields.pengenalan_diri} $boolType,
+      ${RangkumanFields.komedi} $boolType,
+      ${RangkumanFields.romansa} $boolType,
+      ${RangkumanFields.fiksi} $boolType,
+      ${RangkumanFields.thriller} $boolType,
+      ${RangkumanFields.misteri} $boolType
     )
     ''');
   }
