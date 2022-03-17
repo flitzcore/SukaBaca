@@ -112,6 +112,7 @@ class _MainPageState extends State<MainPage> {
                     return Column(
                       children: [
                         RangkumanCard(
+                          id: index,
                           isFavorite: rangkuman[index].favorit,
                           nama_pengarang: rangkuman[index].nama_pengarang,
                           judul: rangkuman[index].judul,

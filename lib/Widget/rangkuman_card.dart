@@ -5,6 +5,7 @@ import 'package:suka_baca/Widget/genre_widget.dart';
 import 'package:suka_baca/Widget/progress_widget.dart';
 
 class RangkumanCard extends StatefulWidget {
+  final int id;
   final String judul;
   final String nama_pengarang;
   final bool onProgress;
@@ -22,6 +23,7 @@ class RangkumanCard extends StatefulWidget {
 
   RangkumanCard(
       {Key? key,
+        required this.id,
         required this.isFavorite,
         required this.nama_pengarang,
         required this.judul,
@@ -43,8 +45,10 @@ class RangkumanCard extends StatefulWidget {
 }
 
 class _RangkumanCardState extends State<RangkumanCard> {
-  List<Widget> genre=[SizedBox()];
+  List<Widget> genre=[];
   void fillGenre(){
+    genre.clear();
+    genre.add(SizedBox());
     if(widget.horror)genre.add(horror);
     if(widget.petualangan)genre.add(petualangan);
     if(widget.pengenalan_diri)genre.add(pengenalanDiri);
@@ -120,7 +124,7 @@ class _RangkumanCardState extends State<RangkumanCard> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => RangkumanPage(),
+                            builder: (context) => RangkumanPage(rid: widget.id,),
                           ),
                         );
                       },

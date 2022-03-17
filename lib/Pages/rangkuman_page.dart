@@ -6,7 +6,11 @@ import '../Widget/genre_widget.dart';
 import '../Widget/progress_widget.dart';
 
 class RangkumanPage extends StatefulWidget {
-  const RangkumanPage({Key? key}) : super(key: key);
+  final int rid;
+  const RangkumanPage({
+    Key? key,
+    required this.rid,
+  }) : super(key: key);
 
   @override
   State<RangkumanPage> createState() => _RangkumanPageState();
