@@ -29,6 +29,7 @@ class _WelcomePagesState extends State<WelcomePages> {
     return Scaffold(
       backgroundColor: whiteColor,
       body: PageView.builder(
+          physics: BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemCount: img.length,
           itemBuilder: (_, index) {
