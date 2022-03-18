@@ -1,18 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:suka_baca/Pages/tambahrangkuman_page.dart';
+import 'package:suka_baca/database/rangkuman.dart';
+import 'package:suka_baca/database/rangkuman_database.dart';
 
 import '../Utility/theme.dart';
 import '../Widget/genre_widget.dart';
 import '../Widget/progress_widget.dart';
 
 class RangkumanPage extends StatefulWidget {
-  const RangkumanPage({Key? key}) : super(key: key);
+  final int rid;
+  const RangkumanPage({
+    Key? key,
+    required this.rid,
+  }) : super(key: key);
 
   @override
   State<RangkumanPage> createState() => _RangkumanPageState();
 }
 
 class _RangkumanPageState extends State<RangkumanPage> {
+  late Rangkuman rangkuman;
+  bool isLoading = false;
+  List<Widget> genre=[];
+  void fillGenre(){
+    genre.clear();
+    genre.add(SizedBox());
+    if(rangkuman.horror)genre.add(horror);
+    if(rangkuman.petualangan)genre.add(petualangan);
+    if(rangkuman.pengenalan_diri)genre.add(pengenalanDiri);
+    if(rangkuman.komedi)genre.add(komedi);
+    if(rangkuman.romansa)genre.add(romansa);
+    if(rangkuman.fiksi)genre.add(fiksi);
+    if(rangkuman.thriller)genre.add(thriller);
+    if(rangkuman.misteri)genre.add(misteri);
+  }
+  @override
+  void initState() {
+    super.initState();
+
+    refreshNote();
+  }
+  Future refreshNote() async {
+    setState(() => isLoading = true);
+
+    this.rangkuman = await RangkumanDatabase.instance.readRangkuman(widget.rid);
+
+    setState(() => isLoading = false);
+  }
   final itemsGenre = [
     horror,
     petualangan,
@@ -30,10 +64,13 @@ class _RangkumanPageState extends State<RangkumanPage> {
   ];
   @override
   Widget build(BuildContext context) {
+  fillGenre();
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
-        child: Padding(
+        child: isLoading
+            ? Center(child: CircularProgressIndicator())
+            :Padding(
           padding: EdgeInsets.symmetric(horizontal: 24),
           child: ListView(
             physics: BouncingScrollPhysics(),
@@ -75,7 +112,7 @@ class _RangkumanPageState extends State<RangkumanPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Guy Kawasaki",
+                        rangkuman.judul.toString(),
                         style: semiBlackBoldTextStyle.copyWith(
                           fontSize: 20,
                         ),
@@ -84,7 +121,7 @@ class _RangkumanPageState extends State<RangkumanPage> {
                         height: 5,
                       ),
                       Text(
-                        "by Alexander Nato",
+                        "by ${rangkuman.nama_pengarang.toString()}",
                         style: lightTextStyle.copyWith(
                           fontSize: 14,
                         ),
@@ -93,17 +130,7 @@ class _RangkumanPageState extends State<RangkumanPage> {
                         height: 5,
                       ),
                       Row(
-                        children: [
-                          romansa,
-                          SizedBox(
-                            width: 5,
-                          ),
-                          komedi,
-                          SizedBox(
-                            width: 5,
-                          ),
-                          pengenalanDiri,
-                        ],
+                        children: genre
                       ),
                       SizedBox(
                         height: 5,
@@ -117,23 +144,7 @@ class _RangkumanPageState extends State<RangkumanPage> {
                         height: 30,
                       ),
                       Text(
-                        "Risus et a nam at quis mauris posuere tellus. Non turpis vel massa, sodales. Venenatis, turpis vel egestas diam id. Volutpat id sagittis, nisl sed euismod tempus. Pharetra, massa velit, lorem mauris amet.",
-                        style: regularBlackTextSTyle.copyWith(fontSize: 14),
-                        textAlign: TextAlign.justify,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "Risus et a nam at quis mauris posuere tellus. Non turpis vel massa, sodales. Venenatis, turpis vel egestas diam id. Volutpat id sagittis, nisl sed euismod tempus. Pharetra, massa velit, lorem mauris amet.",
-                        style: regularBlackTextSTyle.copyWith(fontSize: 14),
-                        textAlign: TextAlign.justify,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "Risus et a nam at quis mauris posuere tellus. Non turpis vel massa, sodales. Venenatis, turpis vel egestas diam id. Volutpat id sagittis, nisl sed euismod tempus. Pharetra, massa velit, lorem mauris amet.",
+                        rangkuman.deskripsi.toString(),
                         style: regularBlackTextSTyle.copyWith(fontSize: 14),
                         textAlign: TextAlign.justify,
                       ),
