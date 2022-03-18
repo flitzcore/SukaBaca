@@ -34,3 +34,55 @@
             // SizedBox(
             //   height: 30,
             // ),
+
+      // Container? valueGenre;
+  // Container? valueProgress;
+  
+    // Container(
+              //   width: 120,
+              //   padding: EdgeInsets.symmetric(
+              //     horizontal: 24,
+              //   ),
+              //   decoration: BoxDecoration(
+              //     border: Border.all(
+              //       width: 2,
+              //       color: blackColor,
+              //     ),
+              //     borderRadius: BorderRadius.circular(12),
+              //   ),
+              //   child: DropdownButtonHideUnderline(
+              //     child: DropdownButton<Container>(
+              //       value: valueProgress,
+              //       isExpanded: false,
+              //       items: itemsProgress.map(buildItem).toList(),
+              //       onChanged: (value) => setState(
+              //         () => this.valueProgress = value,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+
+
+              // Container(
+              //   width: 120,
+              //   padding: EdgeInsets.symmetric(
+              //     horizontal: 24,
+              //   ),
+              //   decoration: BoxDecoration(
+              //     border: Border.all(
+              //       width: 2,
+              //       color: blackColor,
+              //     ),
+              //     borderRadius: BorderRadius.circular(12),
+              //   ),
+              //   child: DropdownButtonHideUnderline(
+              //     child: DropdownButton<Container>(
+              //       value: valueGenre,
+              //       isExpanded: true,
+              //       items: itemsGenre.map(buildItem).toList(),
+              //       onChanged: (value) => setState(
+              //         () => this.valueGenre = value,
+              //       ),
+              //     ),
+              //   ),
+              // ),

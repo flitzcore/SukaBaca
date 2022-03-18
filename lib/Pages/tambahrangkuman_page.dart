@@ -27,9 +27,6 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
     selesai,
   ];
 
-  // Container? valueGenre;
-  // Container? valueProgress;
-
   bool isFavorite = false;
   bool isHorror = false;
   bool isPetualangan = false;
@@ -112,29 +109,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
               SizedBox(
                 height: 30,
               ),
-              // Container(
-              //   width: 120,
-              //   padding: EdgeInsets.symmetric(
-              //     horizontal: 24,
-              //   ),
-              //   decoration: BoxDecoration(
-              //     border: Border.all(
-              //       width: 2,
-              //       color: blackColor,
-              //     ),
-              //     borderRadius: BorderRadius.circular(12),
-              //   ),
-              //   child: DropdownButtonHideUnderline(
-              //     child: DropdownButton<Container>(
-              //       value: valueGenre,
-              //       isExpanded: true,
-              //       items: itemsGenre.map(buildItem).toList(),
-              //       onChanged: (value) => setState(
-              //         () => this.valueGenre = value,
-              //       ),
-              //     ),
-              //   ),
-              // ),
+
               ElevatedButton(
                 onPressed: () => showDialog(
                   context: context,
@@ -256,29 +231,6 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
               SizedBox(
                 height: 30,
               ),
-              // Container(
-              //   width: 120,
-              //   padding: EdgeInsets.symmetric(
-              //     horizontal: 24,
-              //   ),
-              //   decoration: BoxDecoration(
-              //     border: Border.all(
-              //       width: 2,
-              //       color: blackColor,
-              //     ),
-              //     borderRadius: BorderRadius.circular(12),
-              //   ),
-              //   child: DropdownButtonHideUnderline(
-              //     child: DropdownButton<Container>(
-              //       value: valueProgress,
-              //       isExpanded: false,
-              //       items: itemsProgress.map(buildItem).toList(),
-              //       onChanged: (value) => setState(
-              //         () => this.valueProgress = value,
-              //       ),
-              //     ),
-              //   ),
-              // ),
               ElevatedButton(
                 onPressed: () => showDialog(
                   context: context,
