@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suka_baca/Pages/main_page.dart';
 import 'package:suka_baca/Pages/rangkuman_page.dart';
 import 'package:suka_baca/Utility/theme.dart';
 import 'package:suka_baca/Widget/genre_widget.dart';
@@ -128,6 +129,7 @@ class _RangkumanCardState extends State<RangkumanCard> {
                             builder: (context) => RangkumanPage(rid: widget.id,),
                           ),
                         );
+
                       },
                       icon: Icon(
                         Icons.arrow_forward,

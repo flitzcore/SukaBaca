@@ -223,7 +223,11 @@ class _RangkumanPageState extends State<RangkumanPage> {
                           ),
                           actions: [
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () async {
+                                await RangkumanDatabase.instance.delete(widget.rid);
+
+                                Navigator.pop(context);
+                                },
                               child: Text(
                                 "Ya",
                                 style: mediumBlackTextSTyle.copyWith(),

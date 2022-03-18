@@ -17,7 +17,9 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   late List<Rangkuman> rangkuman;
-
+  _MainPageState(){
+    refreshList();
+  }
   bool isLoading = false;
   bool add = false;
 
@@ -141,7 +143,7 @@ class _MainPageState extends State<MainPage> {
                     return Column(
                       children: [
                         RangkumanCard(
-                          id: index+1,
+                          id: rangkuman[index].id!,
                           isFavorite: rangkuman[index].favorit,
                           nama_pengarang: rangkuman[index].nama_pengarang,
                           judul: rangkuman[index].judul,
