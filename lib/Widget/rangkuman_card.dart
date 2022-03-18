@@ -105,7 +105,7 @@ class _RangkumanCardState extends State<RangkumanCard> {
                   SizedBox(
                     height: 5,
                   ),
-                  on_progress,
+                  widget.onProgress?on_progress:selesai,
                 ],
               ),
               Spacer(),
