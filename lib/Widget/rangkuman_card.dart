@@ -107,6 +107,7 @@ class _RangkumanCardState extends State<RangkumanCard> {
                   on_progress,
                 ],
               ),
+              Spacer(),
               Expanded(
                 child: Column(
                   children: [
