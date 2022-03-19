@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-//import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
+
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart'as Path;
 import 'package:suka_baca/Pages/route_page.dart';
@@ -23,10 +24,10 @@ class TambahRangkumanPage extends StatefulWidget {
 
 class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
   File? image;
-/*
+
   Future pickImage(ImageSource source)async{
     try {
-      final image=await ImagePicker().pickImage(source: source);
+      final image=await ImagePicker.pickImage(source: source);
       if(image==null)return;
       final imagePermanent= await saveImagePermanently(image.path);
       setState(()=>{
@@ -46,7 +47,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
 
     });
     return File(imagePath).copy(image.path);
-  }*/
+  }
   final _formKey = GlobalKey<FormState>();
   late bool favorit;
   late String judul;
@@ -477,7 +478,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                     actions: [
                       TextButton(
                       onPressed: (){
-                       // pickImage(ImageSource.gallery);
+                        pickImage(ImageSource.gallery);
                       },
                       child: Text(
                         "Galeri",
@@ -486,7 +487,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                     ),
                       TextButton(
                         onPressed: () {
-                          //pickImage(ImageSource.camera);
+                          pickImage(ImageSource.camera);
                           },
                         child: Text(
                           "Kamera",
