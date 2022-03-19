@@ -32,6 +32,7 @@ class RangkumanDatabase{
       ${RangkumanFields.judul} $textType, 
       ${RangkumanFields.nama_pengarang} $textType, 
       ${RangkumanFields.deskripsi} $textType,
+      ${RangkumanFields.image_path} $textType,
       ${RangkumanFields.horror} $boolType,
       ${RangkumanFields.petualangan} $boolType,
       ${RangkumanFields.pengenalan_diri} $boolType,

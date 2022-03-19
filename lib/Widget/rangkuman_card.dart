@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:suka_baca/Pages/main_page.dart';
 import 'package:suka_baca/Pages/rangkuman_page.dart';
 import 'package:suka_baca/Utility/theme.dart';
 import 'package:suka_baca/Widget/genre_widget.dart';
@@ -8,6 +11,7 @@ class RangkumanCard extends StatefulWidget {
   final int id;
   final String judul;
   final String nama_pengarang;
+  final String img_path;
   final bool onProgress;
   final bool isFavorite;
 //genre
@@ -28,6 +32,7 @@ class RangkumanCard extends StatefulWidget {
         required this.nama_pengarang,
         required this.judul,
         required this.onProgress,
+        required this.img_path,
         //genre
         required this.horror,
         required this.petualangan,
@@ -79,10 +84,15 @@ class _RangkumanCardState extends State<RangkumanCard> {
           ),
           child: Row(
             children: [
-              Container(
+              widget.img_path==''?Container(
                 width: 61,
                 height: 93,
                 color: blackColor,
+              ):Image.file(
+                File(widget.img_path),
+                width: 61,
+                height: 93,
+                fit: BoxFit.cover,
               ),
               SizedBox(
                 width: 10,
@@ -104,7 +114,7 @@ class _RangkumanCardState extends State<RangkumanCard> {
                   SizedBox(
                     height: 5,
                   ),
-                  on_progress,
+                  widget.onProgress?on_progress:selesai,
                 ],
               ),
               Spacer(),
@@ -128,6 +138,7 @@ class _RangkumanCardState extends State<RangkumanCard> {
                             builder: (context) => RangkumanPage(rid: widget.id,),
                           ),
                         );
+
                       },
                       icon: Icon(
                         Icons.arrow_forward,

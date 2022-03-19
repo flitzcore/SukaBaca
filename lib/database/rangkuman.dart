@@ -2,13 +2,14 @@ final String tableRangkuman = 'rangkuman';
 class RangkumanFields{
 
   static final List<String> values = [
-    id,favorit,judul,deskripsi,nama_pengarang,on_progress,horror,petualangan,pengenalan_diri,komedi,romansa,fiksi,thriller,misteri
+    id,favorit,judul,deskripsi,nama_pengarang,on_progress,image_path,horror,petualangan,pengenalan_diri,komedi,romansa,fiksi,thriller,misteri
   ];
   static final String id='_id';
   static final String favorit='favorit';
   static final String judul='judul';
   static final String deskripsi='deskripsi';
   static final String nama_pengarang='author';
+  static final String image_path='image_path';
   static final String on_progress='onprogress';
   static final String horror='horror';
   static final String petualangan='petualangan';
@@ -26,6 +27,7 @@ class Rangkuman {
   final String nama_pengarang;
   final String judul;
   final String deskripsi;
+  final String image_path;
   final bool horror;
   final bool petualangan;
   final bool pengenalan_diri;
@@ -40,6 +42,7 @@ class Rangkuman {
     required this.nama_pengarang,
     required this.favorit,
     required this.deskripsi,
+    this.image_path='',
     required this.judul,
     //genre
     this.horror=false,
@@ -58,6 +61,7 @@ class Rangkuman {
     String? nama_pengarang,
     String? judul,
     String? deskripsi,
+    String? image_path,
     bool?  horror,
     bool? petualangan,
     bool? pengenalan_diri,
@@ -72,6 +76,7 @@ class Rangkuman {
       onProgress: onProgress ?? this.onProgress,
       nama_pengarang: nama_pengarang ?? this.nama_pengarang,
       deskripsi: deskripsi ?? this.deskripsi,
+      image_path: image_path ?? this.image_path,
       judul: judul ?? this.judul,
       horror: horror ?? this.horror,
       petualangan: petualangan ?? this.petualangan,
@@ -88,6 +93,7 @@ class Rangkuman {
       onProgress: json[RangkumanFields.on_progress] == 1,
       nama_pengarang: json[RangkumanFields.nama_pengarang] as String,
       deskripsi: json[RangkumanFields.deskripsi] as String,
+      image_path: json[RangkumanFields.image_path] as String,
       judul: json[RangkumanFields.judul] as String,
       horror: json[RangkumanFields.horror] == 1,
       petualangan: json[RangkumanFields.petualangan] == 1,
@@ -105,6 +111,7 @@ class Rangkuman {
     RangkumanFields.nama_pengarang: nama_pengarang,
     RangkumanFields.judul: judul,
     RangkumanFields.deskripsi: deskripsi,
+    RangkumanFields.image_path: image_path,
     RangkumanFields.horror: horror ? 1:0,
     RangkumanFields.petualangan: petualangan ? 1:0,
     RangkumanFields.pengenalan_diri: pengenalan_diri ? 1:0,

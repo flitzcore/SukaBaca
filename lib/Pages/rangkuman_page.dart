@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suka_baca/Pages/route_page.dart';
 import 'package:suka_baca/Pages/tambahrangkuman_page.dart';
 import 'package:suka_baca/database/rangkuman.dart';
 import 'package:suka_baca/database/rangkuman_database.dart';
@@ -172,7 +173,7 @@ class _RangkumanPageState extends State<RangkumanPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => TambahRangkumanPage(),
+                            builder: (context) => TambahRangkumanPage(rangkuman: rangkuman,),
                           ),
                         );
                       },
@@ -223,7 +224,15 @@ class _RangkumanPageState extends State<RangkumanPage> {
                           ),
                           actions: [
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () async {
+                                await RangkumanDatabase.instance.delete(widget.rid);
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const RoutePage()),
+                                );
+                                },
                               child: Text(
                                 "Ya",
                                 style: mediumBlackTextSTyle.copyWith(),

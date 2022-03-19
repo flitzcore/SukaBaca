@@ -1,16 +1,88 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+//import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as Path;
+import 'package:suka_baca/Pages/route_page.dart';
 import 'package:suka_baca/Utility/theme.dart';
 import 'package:suka_baca/Widget/genre_widget.dart';
 import 'package:suka_baca/Widget/progress_widget.dart';
+import 'package:suka_baca/database/rangkuman.dart';
+import 'package:suka_baca/database/rangkuman_database.dart';
 
 class TambahRangkumanPage extends StatefulWidget {
-  const TambahRangkumanPage({Key? key}) : super(key: key);
+  final Rangkuman? rangkuman;
+  const TambahRangkumanPage({Key? key, this.rangkuman}) : super(key: key);
 
   @override
   State<TambahRangkumanPage> createState() => _TambahRangkumanPageState();
 }
 
 class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
+  File? image;
+/*
+  Future pickImage(ImageSource source)async{
+    try {
+      final image=await ImagePicker().pickImage(source: source);
+      if(image==null)return;
+      final imagePermanent= await saveImagePermanently(image.path);
+      setState(()=>{
+        this.image=imagePermanent,
+
+      });
+    } on PlatformException catch (e) {
+      print('Failed to fetch img: $e');
+    }
+  }
+  Future <File> saveImagePermanently(String imagePath)async{
+    final directory= await getApplicationDocumentsDirectory();
+    final name= Path.basename(imagePath);
+    final image=File('${directory.path}/${name}');
+    setState(()=>{
+      this.img_path=image.path,
+
+    });
+    return File(imagePath).copy(image.path);
+  }*/
+  final _formKey = GlobalKey<FormState>();
+  late bool favorit;
+  late String judul;
+  late String pengarang;
+  late String deskripsi;
+  late String img_path;
+  late bool progress;
+
+  //genre
+  late bool b_horror;
+  late bool b_petualangan;
+  late bool b_pengenalan_diri;
+  late bool b_komedi;
+  late bool b_romansa;
+  late bool b_fiksi;
+  late bool b_thriller;
+  late bool b_misteri;
+  @override
+  void initState() {
+    super.initState();
+
+    favorit = widget.rangkuman?.favorit ?? false;
+    judul = widget.rangkuman?.judul ?? '';
+    pengarang = widget.rangkuman?.nama_pengarang ?? '';
+    deskripsi = widget.rangkuman?.deskripsi ?? '';
+    img_path = widget.rangkuman?.image_path ?? '';
+    progress = widget.rangkuman?.onProgress ?? false;
+    b_horror = widget.rangkuman?.horror ?? false;
+    b_petualangan = widget.rangkuman?.petualangan ?? false;
+    b_pengenalan_diri = widget.rangkuman?.pengenalan_diri ?? false;
+    b_komedi = widget.rangkuman?.komedi ?? false;
+    b_romansa = widget.rangkuman?.romansa ?? false;
+    b_fiksi = widget.rangkuman?.fiksi ?? false;
+    b_thriller = widget.rangkuman?.thriller ?? false;
+    b_misteri = widget.rangkuman?.misteri ?? false;
+  }
+
   final itemsGenre = [
     horror,
     petualangan,
@@ -27,7 +99,11 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
     selesai,
   ];
 
-  bool isFavorite = false;
+  // Container? valueGenre;
+  // Container? valueProgress;
+
+  // bool isFavorite = false;
+  /*
   bool isHorror = false;
   bool isPetualangan = false;
   bool isPengenalanDiri = false;
@@ -39,7 +115,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
 
   bool isSelesai = false;
   bool isOnProgress = false;
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +128,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
             physics: BouncingScrollPhysics(),
             children: [
               SizedBox(
-                height: 30,
+                height: 20,
               ),
               Row(
                 children: [
@@ -67,28 +143,29 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        isFavorite = !isFavorite;
+                        favorit = !favorit;
                       });
                     },
                     icon: Icon(
                       Icons.favorite,
                       size: 25,
-                      color: isFavorite ? redColor : greyColor,
+                      color: favorit ? redColor : greyColor,
                     ),
                   ),
                 ],
               ),
               SizedBox(
-                height: 30,
+                height: 20,
               ),
-              TextField(
+              TextFormField(
+                initialValue: judul,
                 style: TextStyle(
                   color: greyColor,
                 ),
                 decoration: InputDecoration(
                   fillColor: greyColor,
                   focusColor: greyColor,
-                  hintText: "Judul - Penulis",
+                  hintText: "Judul",
                   hintStyle: lightTextStyle,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -105,9 +182,48 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                     ),
                   ),
                 ),
+                onChanged: (text) {
+                  setState(() {
+                    this.judul = text;
+                  });
+                },
               ),
               SizedBox(
-                height: 30,
+                height: 20,
+              ),
+              TextFormField(
+                initialValue: pengarang,
+                style: TextStyle(
+                  color: greyColor,
+                ),
+                decoration: InputDecoration(
+                  fillColor: greyColor,
+                  focusColor: greyColor,
+                  hintText: "Pengarang",
+                  hintStyle: lightTextStyle,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: blackColor,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: blackColor,
+                    ),
+                  ),
+                ),
+                onChanged: (text) {
+                  setState(() {
+                    this.pengarang = text;
+                  });
+                },
+              ),
+              SizedBox(
+                height: 20,
               ),
 
               ElevatedButton(
@@ -127,73 +243,73 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                       children: [
                         GenreSelector(
                           genre: horror,
-                          checkValue: isHorror,
+                          checkValue: b_horror,
                           onChecked: (_isHorror) {
                             setState(() {
-                              isHorror = _isHorror;
+                              b_horror = _isHorror;
                             });
                           },
                         ),
                         GenreSelector(
                           genre: petualangan,
-                          checkValue: isPetualangan,
+                          checkValue: b_petualangan,
                           onChecked: (_isPetualangan) {
                             setState(() {
-                              isPetualangan = _isPetualangan;
+                              b_petualangan = _isPetualangan;
                             });
                           },
                         ),
                         GenreSelector(
                           genre: pengenalanDiri,
-                          checkValue: isPengenalanDiri,
+                          checkValue: b_pengenalan_diri,
                           onChecked: (_isPengenalanDiri) {
                             setState(() {
-                              isPengenalanDiri = _isPengenalanDiri;
+                              b_pengenalan_diri = _isPengenalanDiri;
                             });
                           },
                         ),
                         GenreSelector(
                           genre: komedi,
-                          checkValue: isKomedi,
+                          checkValue: b_komedi,
                           onChecked: (_isKomedi) {
                             setState(() {
-                              isKomedi = _isKomedi;
+                              b_komedi = _isKomedi;
                             });
                           },
                         ),
                         GenreSelector(
                           genre: romansa,
-                          checkValue: isRomansa,
+                          checkValue: b_romansa,
                           onChecked: (_isRomansa) {
                             setState(() {
-                              isRomansa = isRomansa;
+                              b_romansa = _isRomansa;
                             });
                           },
                         ),
                         GenreSelector(
                           genre: fiksi,
-                          checkValue: isFiksi,
+                          checkValue: b_fiksi,
                           onChecked: (_isFiksi) {
                             setState(() {
-                              isFiksi = _isFiksi;
+                              b_fiksi = _isFiksi;
                             });
                           },
                         ),
                         GenreSelector(
                           genre: thriller,
-                          checkValue: isThriller,
+                          checkValue: b_thriller,
                           onChecked: (_isThriller) {
                             setState(() {
-                              isThriller = _isThriller;
+                              b_thriller = _isThriller;
                             });
                           },
                         ),
                         GenreSelector(
                           genre: misteri,
-                          checkValue: isHorror,
+                          checkValue: b_misteri,
                           onChecked: (_isMisteri) {
                             setState(() {
-                              isMisteri = _isMisteri;
+                              b_misteri = _isMisteri;
                             });
                           },
                         ),
@@ -229,7 +345,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 20,
               ),
               ElevatedButton(
                 onPressed: () => showDialog(
@@ -248,19 +364,19 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                       children: [
                         GenreSelector(
                           genre: on_progress,
-                          checkValue: isOnProgress,
+                          checkValue: progress,
                           onChecked: (_isOnProgress) {
                             setState(() {
-                              isOnProgress = _isOnProgress;
+                              progress = _isOnProgress;
                             });
                           },
                         ),
                         GenreSelector(
                           genre: selesai,
-                          checkValue: isSelesai,
+                          checkValue: progress,
                           onChecked: (_isSelesai) {
                             setState(() {
-                              isSelesai = _isSelesai;
+                              progress = !_isSelesai;
                             });
                           },
                         ),
@@ -296,9 +412,88 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 20,
               ),
-              TextField(
+              ElevatedButton(
+                onPressed: () => showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: BorderSide(
+                              color: blackColor,
+                              width: 3,
+                            ),
+                          ),
+                          title: Text(
+                            "Pilih gambar",
+                            style: semiBlackBoldTextStyle,
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                // pickImage(ImageSource.gallery);
+                              },
+                              child: Text(
+                                "Galeri",
+                                style: mediumBlackTextSTyle.copyWith(),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                //pickImage(ImageSource.camera);
+                              },
+                              child: Text(
+                                "Kamera",
+                                style: mediumBlackTextSTyle.copyWith(),
+                              ),
+                            ),
+                          ],
+                        )),
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 4,
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Gambar",
+                        style: lightTextStyle,
+                      ),
+                      Spacer(),
+                      Icon(
+                        Icons.camera,
+                        color: greyColor,
+                      ),
+                    ],
+                  ),
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(whiteColor),
+                  elevation: MaterialStateProperty.all(0),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: BorderSide(
+                        color: blackColor,
+                        width: 2,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              image != null
+                  ? Image.file(
+                      image!,
+                      width: 61,
+                      height: 93,
+                      fit: BoxFit.cover,
+                    )
+                  : SizedBox(
+                      height: 40,
+                    ),
+              TextFormField(
+                initialValue: deskripsi,
                 maxLines: null,
                 style: TextStyle(
                   color: greyColor,
@@ -323,6 +518,11 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                     ),
                   ),
                 ),
+                onChanged: (text) {
+                  setState(() {
+                    this.deskripsi = text;
+                  });
+                },
               ),
               SizedBox(
                 height: 160,
@@ -337,7 +537,9 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                     ),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  addOrUpdateNote();
+                },
                 child: Container(
                   padding: EdgeInsets.symmetric(
                     vertical: 6,
@@ -356,6 +558,64 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
         ),
       ),
     );
+  }
+
+  void addOrUpdateNote() async {
+    print("debug");
+    //final isValid = _formKey.currentState!.validate();
+    // if (isValid) {
+    final isUpdating = widget.rangkuman != null;
+
+    if (isUpdating) {
+      await updateNote();
+    } else {
+      await addNote();
+    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const RoutePage()),
+    );
+    //}
+  }
+
+  Future updateNote() async {
+    final note = widget.rangkuman!.copy(
+        favorit: favorit,
+        judul: judul,
+        nama_pengarang: pengarang,
+        deskripsi: deskripsi,
+        image_path: img_path,
+        onProgress: progress,
+        horror: b_horror,
+        petualangan: b_petualangan,
+        pengenalan_diri: b_pengenalan_diri,
+        komedi: b_komedi,
+        romansa: b_romansa,
+        fiksi: b_fiksi,
+        thriller: b_thriller,
+        misteri: b_misteri);
+
+    await RangkumanDatabase.instance.update(note);
+  }
+
+  Future addNote() async {
+    final rangkuman = Rangkuman(
+        favorit: favorit,
+        judul: judul,
+        nama_pengarang: pengarang,
+        deskripsi: deskripsi,
+        image_path: img_path,
+        onProgress: progress,
+        horror: b_horror,
+        petualangan: b_petualangan,
+        pengenalan_diri: b_pengenalan_diri,
+        komedi: b_komedi,
+        romansa: b_romansa,
+        fiksi: b_fiksi,
+        thriller: b_thriller,
+        misteri: b_misteri);
+
+    await RangkumanDatabase.instance.create(rangkuman);
   }
 
   DropdownMenuItem<Container> buildItem(Container item) => DropdownMenuItem(
