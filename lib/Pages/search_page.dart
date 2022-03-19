@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:suka_baca/Utility/theme.dart';
+import 'package:suka_baca/Widget/rangkuman_card.dart';
+import 'package:suka_baca/database/rangkuman.dart';
+import 'package:suka_baca/database/rangkuman_database.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -9,6 +12,21 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  late List<Rangkuman> rangkuman;
+  String query = '';
+  bool isLoading = false;
+
+  void initState() {
+    super.initState();
+    refreshList();
+  }
+
+  Future refreshList() async {
+    setState(() => isLoading = true);
+    this.rangkuman = await RangkumanDatabase.instance.readAll();
+    setState(() => isLoading = false);
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +35,9 @@ class _SearchPageState extends State<SearchPage> {
         padding: const EdgeInsets.symmetric(
           horizontal: 24,
         ),
-        child: ListView(
-          physics: BouncingScrollPhysics(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: 30,
@@ -33,6 +52,7 @@ class _SearchPageState extends State<SearchPage> {
               height: 30,
             ),
             TextField(
+
               style: TextStyle(
                 color: greyColor,
               ),
@@ -57,10 +77,61 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                 ),
               ),
+              onChanged: (query){
+                searchBook(query);
+              },
             ),
+            Expanded(
+              child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  itemCount: rangkuman.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        RangkumanCard(
+                          id: rangkuman[index].id!,
+                          isFavorite: rangkuman[index].favorit,
+                          nama_pengarang: rangkuman[index].nama_pengarang,
+                          img_path: rangkuman[index].image_path,
+                          judul: rangkuman[index].judul,
+                          onProgress: rangkuman[index].onProgress,
+                          horror: rangkuman[index].horror,
+                          petualangan: rangkuman[index].petualangan,
+                          pengenalan_diri: rangkuman[index].pengenalan_diri,
+                          komedi: rangkuman[index].komedi,
+                          romansa: rangkuman[index].romansa,
+                          fiksi: rangkuman[index].fiksi,
+                          thriller: rangkuman[index].thriller,
+                          misteri: rangkuman[index].misteri,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ],
+                    );
+                  }),
+            )
+
           ],
         ),
       )),
     );
+  }
+  void searchBook(String query) {
+    print("query: ${query}");
+    final books = rangkuman.where((book) {
+      final titleLower = book.judul.toLowerCase();
+      final authorLower = book.nama_pengarang.toLowerCase();
+      final searchLower = query.toLowerCase();
+
+      return titleLower.contains(searchLower) ||
+          authorLower.contains(searchLower);
+    }).toList();
+  //  print(books);
+    setState(() {
+      this.query = query;
+      this.rangkuman = books;
+
+    });
   }
 }

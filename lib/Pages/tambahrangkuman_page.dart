@@ -463,6 +463,13 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                   onPressed: ()=>showDialog(
                   context: context,
                   builder: (_)=>AlertDialog(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: BorderSide(
+                        color: blackColor,
+                        width: 3,
+                      ),
+                    ),
                     title: Text(
                       "Pilih gambar",
                       style: semiBlackBoldTextStyle,
@@ -496,16 +503,28 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
 
                         Text(
                           "Gambar",
-                          style: semiWhiteBoldTextStyle.copyWith(
-                            fontSize: 20,
-                          ),
+                          style: lightTextStyle,
                         ),
                         Spacer(),
                         Icon(Icons.camera,
                           color: greyColor,),
                       ],
                     ),
-                  ),),
+                  ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(whiteColor),
+                  elevation: MaterialStateProperty.all(0),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: BorderSide(
+                        color: blackColor,
+                        width: 2,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
                 image !=null? Image.file(
                 image!,
                 width: 61,

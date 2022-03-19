@@ -173,7 +173,7 @@ class _RangkumanPageState extends State<RangkumanPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => TambahRangkumanPage(),
+                            builder: (context) => TambahRangkumanPage(rangkuman: rangkuman,),
                           ),
                         );
                       },
