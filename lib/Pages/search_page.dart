@@ -13,6 +13,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   late List<Rangkuman> rangkuman;
+  List<Rangkuman> rangkumanTemp=[];
   String query = '';
   bool isLoading = false;
 
@@ -24,6 +25,7 @@ class _SearchPageState extends State<SearchPage> {
   Future refreshList() async {
     setState(() => isLoading = true);
     this.rangkuman = await RangkumanDatabase.instance.readAll();
+
     setState(() => isLoading = false);
 
   }
@@ -84,25 +86,25 @@ class _SearchPageState extends State<SearchPage> {
             Expanded(
               child: ListView.builder(
                   physics: BouncingScrollPhysics(),
-                  itemCount: rangkuman.length,
+                  itemCount: rangkumanTemp.length,
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
                         RangkumanCard(
-                          id: rangkuman[index].id!,
-                          isFavorite: rangkuman[index].favorit,
-                          nama_pengarang: rangkuman[index].nama_pengarang,
-                          img_path: rangkuman[index].image_path,
-                          judul: rangkuman[index].judul,
-                          onProgress: rangkuman[index].onProgress,
-                          horror: rangkuman[index].horror,
-                          petualangan: rangkuman[index].petualangan,
-                          pengenalan_diri: rangkuman[index].pengenalan_diri,
-                          komedi: rangkuman[index].komedi,
-                          romansa: rangkuman[index].romansa,
-                          fiksi: rangkuman[index].fiksi,
-                          thriller: rangkuman[index].thriller,
-                          misteri: rangkuman[index].misteri,
+                          id: rangkumanTemp[index].id!,
+                          isFavorite: rangkumanTemp[index].favorit,
+                          nama_pengarang: rangkumanTemp[index].nama_pengarang,
+                          img_path: rangkumanTemp[index].image_path,
+                          judul: rangkumanTemp[index].judul,
+                          onProgress: rangkumanTemp[index].onProgress,
+                          horror: rangkumanTemp[index].horror,
+                          petualangan: rangkumanTemp[index].petualangan,
+                          pengenalan_diri: rangkumanTemp[index].pengenalan_diri,
+                          komedi: rangkumanTemp[index].komedi,
+                          romansa: rangkumanTemp[index].romansa,
+                          fiksi: rangkumanTemp[index].fiksi,
+                          thriller: rangkumanTemp[index].thriller,
+                          misteri: rangkumanTemp[index].misteri,
                         ),
                         SizedBox(
                           height: 5,
@@ -130,7 +132,7 @@ class _SearchPageState extends State<SearchPage> {
   //  print(books);
     setState(() {
       this.query = query;
-      this.rangkuman = books;
+      this.rangkumanTemp = books;
 
     });
   }
