@@ -146,6 +146,7 @@ class _MainPageState extends State<MainPage> {
                           id: rangkuman[index].id!,
                           isFavorite: rangkuman[index].favorit,
                           nama_pengarang: rangkuman[index].nama_pengarang,
+                          img_path: rangkuman[index].image_path,
                           judul: rangkuman[index].judul,
                           onProgress: rangkuman[index].onProgress,
                           horror: rangkuman[index].horror,

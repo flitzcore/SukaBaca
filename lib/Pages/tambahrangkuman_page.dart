@@ -1,10 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart'as Path;
 import 'package:suka_baca/Pages/route_page.dart';
 import 'package:suka_baca/Utility/theme.dart';
 import 'package:suka_baca/Widget/genre_widget.dart';
 import 'package:suka_baca/Widget/progress_widget.dart';
 import 'package:suka_baca/database/rangkuman.dart';
 import 'package:suka_baca/database/rangkuman_database.dart';
+
 
 class TambahRangkumanPage extends StatefulWidget {
   final Rangkuman? rangkuman;
@@ -15,11 +22,37 @@ class TambahRangkumanPage extends StatefulWidget {
 }
 
 class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
+  File? image;
+
+  Future pickImage(ImageSource source)async{
+    try {
+      final image=await ImagePicker().pickImage(source: source);
+      if(image==null)return;
+      final imagePermanent= await saveImagePermanently(image.path);
+      setState(()=>{
+        this.image=imagePermanent,
+
+      });
+    } on PlatformException catch (e) {
+      print('Failed to fetch img: $e');
+    }
+  }
+  Future <File> saveImagePermanently(String imagePath)async{
+    final directory= await getApplicationDocumentsDirectory();
+    final name= Path.basename(imagePath);
+    final image=File('${directory.path}/${name}');
+    setState(()=>{
+      this.img_path=image.path,
+
+    });
+    return File(imagePath).copy(image.path);
+  }
   final _formKey = GlobalKey<FormState>();
   late bool favorit;
   late String judul;
   late String pengarang;
   late String deskripsi;
+  late String img_path;
   late bool progress;
 
   //genre
@@ -39,6 +72,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
     judul = widget.rangkuman?.judul ?? '';
     pengarang = widget.rangkuman?.nama_pengarang ?? '';
     deskripsi=widget.rangkuman?.deskripsi ?? '';
+    img_path=widget.rangkuman?.image_path ?? '';
     progress = widget.rangkuman?.onProgress ?? false;
     b_horror=widget.rangkuman?.horror ?? false;
     b_petualangan=widget.rangkuman?.petualangan ?? false;
@@ -121,7 +155,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                 ],
               ),
               SizedBox(
-                height: 30,
+                height: 20,
               ),
               TextFormField(
                 initialValue: judul,
@@ -155,7 +189,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                 },
               ),
               SizedBox(
-                height: 30,
+                height: 20,
               ),
               TextFormField(
                 initialValue: pengarang,
@@ -333,7 +367,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 20,
               ),
               // Container(
               //   width: 120,
@@ -423,8 +457,59 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 20,
               ),
+              ElevatedButton(
+                  onPressed: ()=>showDialog(
+                  context: context,
+                  builder: (_)=>AlertDialog(
+                    title: Text(
+                      "Pilih gambar",
+                      style: semiBlackBoldTextStyle,
+                    ),
+                    actions: [
+                      TextButton(
+                      onPressed: (){
+                        pickImage(ImageSource.gallery);
+                      },
+                      child: Text(
+                        "Galeri",
+                        style: mediumBlackTextSTyle.copyWith(),
+                      ),
+                    ),
+                      TextButton(
+                        onPressed: () {pickImage(ImageSource.camera);},
+                        child: Text(
+                          "Kamera",
+                          style: mediumBlackTextSTyle.copyWith(),
+                        ),
+                      ),],
+                  )),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 4,
+                    ),
+                    child: Row(
+                      children: [
+
+                        Text(
+                          "Gambar",
+                          style: semiWhiteBoldTextStyle.copyWith(
+                            fontSize: 20,
+                          ),
+                        ),
+                        Spacer(),
+                        Icon(Icons.camera,
+                          color: greyColor,),
+                      ],
+                    ),
+                  ),),
+                image !=null? Image.file(
+                image!,
+                width: 61,
+                height: 93,
+                fit: BoxFit.cover,
+              ):SizedBox(height: 40,),
               TextFormField(
                 initialValue: deskripsi,
                 maxLines: null,
@@ -514,6 +599,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
       judul: judul,
       nama_pengarang: pengarang,
       deskripsi: deskripsi,
+      image_path: img_path,
       onProgress: progress,
       horror: b_horror,
       petualangan: b_petualangan,
@@ -533,6 +619,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
         judul: judul,
         nama_pengarang: pengarang,
         deskripsi: deskripsi,
+        image_path: img_path,
         onProgress: progress,
         horror: b_horror,
         petualangan: b_petualangan,
