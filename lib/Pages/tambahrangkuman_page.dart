@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as Path;
 import 'package:suka_baca/Pages/route_page.dart';
@@ -22,30 +23,30 @@ class TambahRangkumanPage extends StatefulWidget {
 
 class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
   File? image;
-/*
-  Future pickImage(ImageSource source)async{
-    try {
-      final image=await ImagePicker().pickImage(source: source);
-      if(image==null)return;
-      final imagePermanent= await saveImagePermanently(image.path);
-      setState(()=>{
-        this.image=imagePermanent,
 
-      });
+  Future pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      final imagePermanent = await saveImagePermanently(image.path);
+      setState(() => {
+            this.image = imagePermanent,
+          });
     } on PlatformException catch (e) {
       print('Failed to fetch img: $e');
     }
   }
-  Future <File> saveImagePermanently(String imagePath)async{
-    final directory= await getApplicationDocumentsDirectory();
-    final name= Path.basename(imagePath);
-    final image=File('${directory.path}/${name}');
-    setState(()=>{
-      this.img_path=image.path,
 
-    });
+  Future<File> saveImagePermanently(String imagePath) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final name = Path.basename(imagePath);
+    final image = File('${directory.path}/${name}');
+    setState(() => {
+          this.img_path = image.path,
+        });
     return File(imagePath).copy(image.path);
-  }*/
+  }
+
   final _formKey = GlobalKey<FormState>();
   late bool favorit;
   late String judul;
@@ -432,7 +433,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                           actions: [
                             TextButton(
                               onPressed: () {
-                                // pickImage(ImageSource.gallery);
+                                pickImage(ImageSource.gallery);
                               },
                               child: Text(
                                 "Galeri",
@@ -441,7 +442,7 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                             ),
                             TextButton(
                               onPressed: () {
-                                //pickImage(ImageSource.camera);
+                                pickImage(ImageSource.camera);
                               },
                               child: Text(
                                 "Kamera",
@@ -468,6 +469,20 @@ class _TambahRangkumanPageState extends State<TambahRangkumanPage> {
                     ],
                   ),
                 ),
+                //   child: Row(
+                //     children: [
+                //       Text(
+                //         "Gambar",
+                //         style: lightTextStyle,
+                //       ),
+                //       Spacer(),
+                //       Icon(
+                //         Icons.camera,
+                //         color: greyColor,
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(whiteColor),
                   elevation: MaterialStateProperty.all(0),
